@@ -337,13 +337,10 @@ if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
 // Image loading and error handling
 const images = document.querySelectorAll('img');
 images.forEach(img => {
-    // Add loading state
-    img.style.opacity = '0';
-    img.style.transition = 'opacity 0.3s ease';
-    
     // Handle successful load
     img.onload = () => {
         img.style.opacity = '1';
+        console.log('Image loaded successfully:', img.src);
     };
     
     // Handle loading errors
@@ -366,6 +363,11 @@ images.forEach(img => {
         placeholder.textContent = 'YG';
         img.parentNode.replaceChild(placeholder, img);
     };
+    
+    // Force reload if image doesn't load
+    if (img.src && !img.complete) {
+        img.src = img.src + '?t=' + new Date().getTime();
+    }
 });
 
 // Console message
