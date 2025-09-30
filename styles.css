@@ -88,6 +88,31 @@ body {
     width: 100%;
 }
 
+.linkedin-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.linkedin-link:hover {
+    background: #0077b5;
+    transform: translateY(-2px);
+}
+
+.linkedin-link::after {
+    display: none;
+}
+
+.linkedin-link i {
+    font-size: 1.2rem;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -169,7 +194,13 @@ body {
     color: #6e6e73;
     margin-bottom: 2rem;
     line-height: 1.5;
-    max-width: 500px;
+    max-width: 600px;
+    word-wrap: break-word;
+    hyphens: none;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
 
 .hero-buttons {
@@ -774,6 +805,11 @@ section {
     
     .nav-menu.active {
         left: 0;
+    }
+    
+    .linkedin-link {
+        margin-left: 0;
+        margin-top: 1rem;
     }
     
     .hero-content {
