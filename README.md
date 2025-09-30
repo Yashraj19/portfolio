@@ -66,7 +66,7 @@ Update the following in `index.html`:
 - Contact information
 
 ### Profile Image
-Replace `WhatsApp Image 2025-09-12 at 12.30.13.jpeg` with your own profile image. Recommended size: 400x400px or larger (square aspect ratio).
+Replace `profile-image.jpg` with your own profile image. Recommended size: 400x400px or larger (square aspect ratio).
 
 ### Colors and Styling
 The website uses CSS custom properties for easy theming. Main colors can be changed in `styles.css`:

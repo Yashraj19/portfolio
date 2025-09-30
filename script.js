@@ -334,26 +334,38 @@ if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
     document.documentElement.style.setProperty('--animation-duration', '0.1s');
 }
 
-// Lazy loading for images
+// Image loading and error handling
 const images = document.querySelectorAll('img');
-const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.3s ease';
-            
-            img.onload = () => {
-                img.style.opacity = '1';
-            };
-            
-            imageObserver.unobserve(img);
-        }
-    });
-});
-
 images.forEach(img => {
-    imageObserver.observe(img);
+    // Add loading state
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
+    
+    // Handle successful load
+    img.onload = () => {
+        img.style.opacity = '1';
+    };
+    
+    // Handle loading errors
+    img.onerror = () => {
+        console.warn('Image failed to load:', img.src);
+        // Create a placeholder with initials
+        const placeholder = document.createElement('div');
+        placeholder.style.cssText = `
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 50%;
+        `;
+        placeholder.textContent = 'YG';
+        img.parentNode.replaceChild(placeholder, img);
+    };
 });
 
 // Console message
